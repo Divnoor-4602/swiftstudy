@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-base-100 px-10 sticky backdrop-blur-lg inset-0 z-30">
+      <div className="navbar bg-base-100 px-10 sticky backdrop-blur-lg inset-0 z-30 items-center">
         <div className="flex-1">
           <Link className="flex gap-1 items-center cursor-pointer" href="/">
             <Image src={logo} alt="SwiftStudy Logo" width={60} height={60} />
@@ -26,8 +26,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href={"/"} className="btn btn-primary flex items-center">
-                Get started <ArrowRight />
+              <Link
+                href={"/"}
+                className="btn btn-primary flex items-center group "
+              >
+                Get started{" "}
+                <ArrowRight className="group-hover:translate-x-1 transition duration-150" />
               </Link>
             </li>
           </ul>
