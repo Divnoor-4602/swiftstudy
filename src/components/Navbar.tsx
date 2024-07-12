@@ -2,6 +2,7 @@ import Link from "next/link";
 import logo from "../../public/assets/swiftstudy-logo.svg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { SignInButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   return (
@@ -21,9 +22,9 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link className="btn btn-ghost" href="/sign-in">
-                Sign in
-              </Link>
+              <SignInButton>
+                <button className="btn btn-ghost">Sign in</button>
+              </SignInButton>
             </li>
             <li>
               <Link

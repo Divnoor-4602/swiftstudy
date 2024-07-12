@@ -1,5 +1,13 @@
+import { UserButton } from "@clerk/nextjs";
+
 const Page = () => {
-  return <>Home page</>;
+  return (
+    <>
+      <div>
+        <UserButton />
+      </div>
+    </>
+  );
 };
 
 export default Page;
