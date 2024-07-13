@@ -2,7 +2,12 @@ import Link from "next/link";
 import logo from "../../public/assets/swiftstudy-logo.svg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { SignInButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+} from "@clerk/nextjs";
 
 const Navbar = () => {
   return (
@@ -22,9 +27,16 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <SignInButton>
-                <button className="btn btn-ghost">Sign in</button>
-              </SignInButton>
+              <SignedIn>
+                <SignOutButton>
+                  <button className="btn btn-ghost">Sign out</button>
+                </SignOutButton>
+              </SignedIn>
+              <SignedOut>
+                <SignInButton>
+                  <button className="btn btn-ghost">Sign in</button>
+                </SignInButton>
+              </SignedOut>
             </li>
             <li>
               <Link
@@ -32,7 +44,7 @@ const Navbar = () => {
                 className="btn btn-primary flex items-center group "
               >
                 Get started{" "}
-                <ArrowRight className="group-hover:translate-x-1 transition duration-150" />
+                <ArrowRight className="size-5 group-hover:translate-x-1 transition duration-150" />
               </Link>
             </li>
           </ul>
