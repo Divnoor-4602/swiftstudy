@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import logo from "../../public/assets/swiftstudy-logo.svg";
 import Image from "next/image";
@@ -12,7 +14,7 @@ import {
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-base-100 px-10 sticky backdrop-blur-lg inset-0 z-30 items-center">
+      <div className="navbar bg-base-100/75  px-10 sticky backdrop-blur-lg inset-0 z-30 items-center">
         <div className="flex-1">
           <Link className="flex gap-1 items-center cursor-pointer" href="/">
             <Image src={logo} alt="SwiftStudy Logo" width={60} height={60} />
@@ -22,9 +24,15 @@ const Navbar = () => {
         <div className="flex-none">
           <ul className="menu menu-horizontal menu-md px-1 items-center gap-4">
             <li>
-              <Link href="/pricing" className="btn btn-ghost">
+              <button
+                className="btn btn-ghost"
+                onClick={() => {
+                  const element = document.querySelector("#pricing-section");
+                  element?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
                 Pricing
-              </Link>
+              </button>
             </li>
             <li>
               <SignedIn>
@@ -41,7 +49,7 @@ const Navbar = () => {
             <li>
               <Link
                 href={"/"}
-                className="btn btn-primary flex items-center group "
+                className="btn btn-primary flex items-center group cursor-pointer"
               >
                 Get started{" "}
                 <ArrowRight className="size-5 group-hover:translate-x-1 transition duration-150" />

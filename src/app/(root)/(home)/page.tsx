@@ -1,8 +1,14 @@
-import { UserButton } from "@clerk/nextjs";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Image from "next/image";
 import logo from "../../../../public/assets/swiftstudy-logo.svg";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import demoImage from "../../../../public/assets/twill-dashboard-preview.jpg";
+import Usage from "@/components/Usage";
+import WhyUseUs from "@/components/WhyUseUs";
+import Pricing from "@/components/Pricing";
+import AboutMe from "@/components/AboutMe";
+import CTA from "@/components/CTA";
 
 const Page = () => {
   return (
@@ -16,19 +22,17 @@ const Page = () => {
           </p>
         </div>
         {/* hero text */}
-        <h1 className="max-w-4xl mt-7 font-extrabold text-5xl text-base-content md:text-6xl tracking-tighter">
-          <div className="flex flex-col gap-3">
-            <p className="mr-4">Effortlessly master your</p>
-            <span>
-              material using
-              <span className="ml-3 relative">
-                <span className="bg-primary inset-0 absolute -rotate-1" />
-                <span className="relative text-primary-content z-10 px-3">
-                  flashcards
-                </span>
+        <h1 className="max-w-5xl mt-7 font-open font-extrabold text-3xl sm:text-5xl text-base-content md:text-6xl tracking-tight flex flex-col gap-5">
+          <span className="mr-4">Effortlessly master your</span>
+          <p>
+            material using
+            <span className="ml-6 relative">
+              <span className="relative font-extrabold text-primary-content z-10 ">
+                flashcards
               </span>
+              <span className="absolute bg-primary -left-2 -top-1 -bottom-1 -right-2 md:-left-3 md:-top-0 md:-bottom-0 md:-right-3 -rotate-1" />
             </span>
-          </div>
+          </p>
         </h1>
         {/* hero content */}
         <p className="text-zinc-400 sm:text-lg mt-8 max-w-prose">
@@ -37,15 +41,71 @@ const Page = () => {
         </p>
 
         {/* hero cta */}
-        <button className="btn btn-primary mt-12 group">
-          Get Started{" "}
-          <ArrowRight className="size-5 group-hover:translate-x-1 duration-200 transition" />
-        </button>
+        <Link href="/dahsboard">
+          <button className="btn btn-primary mt-12 group">
+            Get Started{" "}
+            <ArrowRight className="size-5 group-hover:translate-x-1 duration-200 transition" />
+          </button>
+        </Link>
       </MaxWidthWrapper>
 
       {/* value proposition section */}
+      <div>
+        <div className="max-w-6xl px-6 lg:px-8 mx-auto">
+          <div className="mt-16">
+            <Image
+              src={demoImage}
+              alt="demo preview of the webpage"
+              width={1364}
+              height={866}
+              quality={100}
+              className="rounded-md shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* how to use section heading */}
+      <div className="my-32 px-6">
+        <div className="mx-auto max-w-5xl sm:mt-56">
+          <div className="mx-auto text-center max-w-3xl">
+            <h2 className="mt-2 font-open font-bold text-2xl sm:text-5xl">
+              As simple as uploading a PDF and bam💥 flashcards ready!
+            </h2>
+            <p className="text-zinc-400 mt-6 sm:text-lg">
+              Transform any PDF into flashcards instantly. It&apos;s
+              unbelievably easy—try it yourself!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* how to use section */}
+      <Usage />
+
+      {/* Why use section  */}
+      <div className="mt-52 px-6 sm:px-20 bg-base-200 py-32">
+        <WhyUseUs />
+      </div>
+
+      {/* Pricing */}
+      <MaxWidthWrapper className="my-52 px-6">
+        <Pricing />
+      </MaxWidthWrapper>
+
+      {/*  Final CTA */}
+      <div className="bg-base-300 px-6 mt-52 pb-32 pt-40">
+        <CTA />
+      </div>
+
+      {/* About me */}
+      <div className="bg-base-300 pb-32 pt-16  px-6">
+        <AboutMe />
+      </div>
     </>
   );
 };
 
 export default Page;
+
+// todo: Edit the image put a ring border around it and use the actual dashboard image

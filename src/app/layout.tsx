@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const open = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-open-sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +29,7 @@ export default function RootLayout({
       }}
     >
       <html lang="en" data-theme="coffee">
-        <body className={inter.className}>
+        <body className={`${inter.className} ${open.variable}`}>
           <Navbar />
           {children}
         </body>
