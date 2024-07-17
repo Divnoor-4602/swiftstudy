@@ -7,8 +7,9 @@ import { ArrowRight } from "lucide-react";
 import {
   SignedIn,
   SignedOut,
-  SignInButton,
   SignOutButton,
+  SignUpButton,
+  UserButton,
 } from "@clerk/nextjs";
 
 const Navbar = () => {
@@ -34,27 +35,45 @@ const Navbar = () => {
                 Pricing
               </button>
             </li>
+            <SignedOut>
+              <li>
+                <SignUpButton>
+                  <button className="btn btn-ghost">Sign up</button>
+                </SignUpButton>
+              </li>
+            </SignedOut>
             <li>
-              <SignedIn>
-                <SignOutButton>
-                  <button className="btn btn-ghost">Sign out</button>
-                </SignOutButton>
-              </SignedIn>
               <SignedOut>
-                <SignInButton>
-                  <button className="btn btn-ghost">Sign in</button>
-                </SignInButton>
+                <Link
+                  href={"/dashboard"}
+                  className="btn btn-primary flex items-center group cursor-pointer"
+                >
+                  Get started{" "}
+                  <ArrowRight className="size-5 group-hover:translate-x-1 transition duration-150" />
+                </Link>
               </SignedOut>
+              <SignedIn>
+                <Link href="/dashboard" className="btn btn-ghost">
+                  Dashboard
+                </Link>
+              </SignedIn>
             </li>
-            <li>
-              <Link
-                href={"/"}
-                className="btn btn-primary flex items-center group cursor-pointer"
-              >
-                Get started{" "}
-                <ArrowRight className="size-5 group-hover:translate-x-1 transition duration-150" />
-              </Link>
-            </li>
+
+            <SignedIn>
+              <li>
+                <UserButton
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: "h-10 w-10",
+                    },
+                    variables: {
+                      colorPrimary: "#ff7000",
+                    },
+                  }}
+                />
+              </li>
+            </SignedIn>
           </ul>
         </div>
       </div>

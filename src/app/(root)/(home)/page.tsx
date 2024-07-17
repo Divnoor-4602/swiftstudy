@@ -22,17 +22,17 @@ const Page = () => {
           </p>
         </div>
         {/* hero text */}
-        <h1 className="max-w-5xl mt-7 font-open font-extrabold text-3xl sm:text-5xl text-base-content md:text-6xl tracking-tight flex flex-col gap-5">
+        <h1 className="max-w-5xl mt-7 font-open font-extrabold text-3xl sm:text-5xl text-base-content lg:text-6xl tracking-tight sm:flex sm:flex-col gap-2 sm:gap-6">
           <span className="mr-4">Effortlessly master your</span>
-          <p>
+          <span>
             material using
-            <span className="ml-6 relative">
+            <span className="ml-3 relative">
               <span className="relative font-extrabold text-primary-content z-10 ">
                 flashcards
               </span>
-              <span className="absolute bg-primary -left-2 -top-1 -bottom-1 -right-2 md:-left-3 md:-top-0 md:-bottom-0 md:-right-3 -rotate-1" />
+              <span className="absolute bg-primary inset-0 -rotate-1" />
             </span>
-          </p>
+          </span>
         </h1>
         {/* hero content */}
         <p className="text-zinc-400 sm:text-lg mt-8 max-w-prose">
