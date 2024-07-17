@@ -29,7 +29,7 @@ export const pricingPlans = [
   {
     plan: "Free",
     price: "$0",
-    quota: 1,
+    quota: 3,
     features: [
       {
         text: "5 pages per PDF",

@@ -26,11 +26,11 @@ const Page = () => {
           <span className="mr-4">Effortlessly master your</span>
           <span>
             material using
-            <span className="ml-3 relative">
+            <span className="ml-4 relative">
               <span className="relative font-extrabold text-primary-content z-10 ">
                 flashcards
               </span>
-              <span className="absolute bg-primary inset-0 -rotate-1" />
+              <span className="absolute bg-primary -rotate-1 -left-1 md:-left-2 top-1 bottom-1 -right-1 md:-right-2" />
             </span>
           </span>
         </h1>

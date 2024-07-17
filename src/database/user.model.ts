@@ -7,6 +7,7 @@ export interface IUser extends Document {
   email: string;
   password?: string;
   picture?: string;
+  cards?: Schema.Types.ObjectId[];
 }
 
 const userSchema = new Schema(
@@ -17,6 +18,7 @@ const userSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: false },
     picture: { type: String, required: false },
+    cards: [{ type: Schema.Types.ObjectId, ref: "Card" }],
   },
   { timestamps: true }
 );
