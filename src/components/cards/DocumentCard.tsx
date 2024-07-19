@@ -1,14 +1,16 @@
+"use client";
+
 import { FileClock } from "lucide-react";
 import { Layers } from "lucide-react";
 import { Trash } from "lucide-react";
 import { format } from "date-fns/format";
+import { deleteFileById } from "@/lib/actions/file.action";
+import { usePathname } from "next/navigation";
 
 interface DocumentProps {
   _id: string;
   name: string;
   user: string | undefined;
-  question: string;
-  answer: string;
   uploadStatus: string;
   key: string;
   url: string;
@@ -19,13 +21,13 @@ const DocumentCard = ({
   _id,
   name,
   user,
-  question,
-  answer,
   uploadStatus,
   key,
   url,
   createdAt,
 }: DocumentProps) => {
+  const pathname = usePathname();
+
   return (
     <>
       <div className="rounded-xl bg-base-300 border border-primary/30 shadow-sm">
@@ -46,6 +48,7 @@ const DocumentCard = ({
           <div
             className="flex items-center text-xs flex-1 justify-center btn btn-sm text-red-700"
             aria-label="delete-document"
+            onClick={() => deleteFileById({ fileId: _id, path: pathname })}
           >
             <Trash className="size-5 mr-2" />
           </div>

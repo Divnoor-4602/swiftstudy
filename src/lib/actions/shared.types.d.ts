@@ -21,3 +21,8 @@ export interface GetUserFilesParams {
   page?: number;
   pageSize?: number;
 }
+
+export interface DeleteFileParams {
+  fileId: string;
+  path: string;
+}

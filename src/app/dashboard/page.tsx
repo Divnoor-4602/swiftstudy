@@ -3,8 +3,9 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { getUserFiles } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs/server";
-import { FileUp, Ghost } from "lucide-react";
+import { Ghost } from "lucide-react";
 import DocumentCard from "@/components/cards/DocumentCard";
+import UploadButton from "@/components/UploadButton";
 
 const Page = async () => {
   const { userId }: { userId: string | null } = auth();
@@ -20,10 +21,7 @@ const Page = async () => {
           <h1 className="text-5xl tracking-tighter font-open font-bold">
             Your cards
           </h1>
-          <button className="btn btn-primary max-w-fit self-end flex items-center group">
-            Upload files
-            <FileUp className="size-6 group-hover:animate-pulse" />
-          </button>
+          <UploadButton />
         </div>
         <div className="border-b border-secondary mt-4" />
       </MaxWidthWrapper>
@@ -38,8 +36,6 @@ const Page = async () => {
                     _id={card._id}
                     name={card.name}
                     user={card.user}
-                    question={card.question}
-                    answer={card.answer}
                     uploadStatus={card.uploadStatus}
                     url={card.url}
                     key={card.key}
