@@ -15,3 +15,9 @@ export interface UpdateUserParams {
   updateData: Partial<IUser>;
   path: string;
 }
+
+export interface GetUserFilesParams {
+  clerkId: string;
+  page?: number;
+  pageSize?: number;
+}

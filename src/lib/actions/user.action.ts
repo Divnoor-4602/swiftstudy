@@ -1,7 +1,12 @@
 import User from "@/database/user.model";
 import { databaseConnect } from "../mongoose";
-import { CreateUserParams, UpdateUserParams } from "./shared.types";
+import {
+  CreateUserParams,
+  GetUserFilesParams,
+  UpdateUserParams,
+} from "./shared.types";
 import { revalidatePath } from "next/cache";
+import File from "@/database/file.model";
 
 export async function createUser(params: CreateUserParams) {
   try {
@@ -10,6 +15,25 @@ export async function createUser(params: CreateUserParams) {
     const user = await User.create(params);
 
     return user;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getUserFiles(params: GetUserFilesParams) {
+  try {
+    await databaseConnect();
+
+    const { clerkId } = params;
+
+    const user = await User.findOne({ clerkId });
+
+    if (!user) throw new Error("User not found!");
+
+    const files = await File.find({ user: user._id });
+
+    return files;
   } catch (error) {
     console.log(error);
     throw error;

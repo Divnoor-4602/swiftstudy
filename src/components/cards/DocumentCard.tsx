@@ -1,0 +1,58 @@
+import { FileClock } from "lucide-react";
+import { Layers } from "lucide-react";
+import { Trash } from "lucide-react";
+import { format } from "date-fns/format";
+
+interface DocumentProps {
+  _id: string;
+  name: string;
+  user: string | undefined;
+  question: string;
+  answer: string;
+  uploadStatus: string;
+  key: string;
+  url: string;
+  createdAt: Date;
+}
+
+const DocumentCard = ({
+  _id,
+  name,
+  user,
+  question,
+  answer,
+  uploadStatus,
+  key,
+  url,
+  createdAt,
+}: DocumentProps) => {
+  return (
+    <>
+      <div className="rounded-xl bg-base-300 border border-primary/30 shadow-sm">
+        <div className="flex items-center gap-6 p-6">
+          <div className="aspect-square size-10 rounded-full bg-gradient-to-r from-primary to-secondary shadow-sm flex-shrink-0" />
+          <div className="text-lg font-medium font-open truncate">{name}</div>
+        </div>
+        <div className="border-b border-primary/30" />
+        <div className="flex justify-between items-center flex-wrap px-3 py-2 my-4 gap-3">
+          <div className="flex items-center text-xs flex-1 justify-center">
+            <FileClock className="size-5 mr-2" />
+            <div className="truncate font-open">{format(createdAt, "PP")}</div>
+          </div>
+          <div className="flex items-center text-xs flex-1 justify-center">
+            <Layers className="size-5 mr-2" />
+            <div className=" font-open">Cards</div>
+          </div>
+          <div
+            className="flex items-center text-xs flex-1 justify-center btn btn-sm text-red-700"
+            aria-label="delete-document"
+          >
+            <Trash className="size-5 mr-2" />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DocumentCard;
