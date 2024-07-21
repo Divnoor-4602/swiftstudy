@@ -1,3 +1,5 @@
+"use server";
+
 import User from "@/database/user.model";
 import { databaseConnect } from "../mongoose";
 import {
@@ -32,6 +34,8 @@ export async function getUserFiles(params: GetUserFilesParams) {
     if (!user) throw new Error("User not found!");
 
     const files = await File.find({ user: user._id });
+
+    console.log("files", files);
 
     return files;
   } catch (error) {

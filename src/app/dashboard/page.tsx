@@ -1,5 +1,3 @@
-"use server";
-
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { getUserFiles } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs/server";
@@ -33,10 +31,10 @@ const Page = async () => {
               return (
                 <li key={card._id}>
                   <DocumentCard
-                    _id={card._id}
-                    name={card.name}
-                    user={card.user}
-                    uploadStatus={card.uploadStatus}
+                    _id={JSON.stringify(card._id)}
+                    name={JSON.stringify(card.name)}
+                    user={JSON.stringify(card.user)}
+                    uploadStatus={JSON.stringify(card.uploadStatus)}
                     url={card.url}
                     key={card.key}
                     createdAt={card.createdAt}

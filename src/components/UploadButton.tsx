@@ -3,11 +3,34 @@
 import { File, Cloud, FileUp } from "lucide-react";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
+import { useUploadThing } from "@/lib/uploadthing";
+import { toast } from "sonner";
+import { useAuth } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
+import { usePathname } from "next/navigation";
 
 const UploadDropzone = () => {
+  const path = usePathname();
+
+  console.log(path);
+
   const [isUploading, setIsUploading] = useState<boolean>(true);
 
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+
+  const { startUpload } = useUploadThing("fileUploader", {
+    onUploadBegin: () => {
+      toast("Uploading file...");
+    },
+    onUploadError: () => {
+      toast.error("Failed to upload the file.");
+    },
+    onClientUploadComplete: (res) => {
+      toast.success("File uploaded successfully.");
+      setIsUploading(false);
+      revalidatePath(path);
+    },
+  });
 
   const startSimulatedProgress = () => {
     setUploadProgress(0);
@@ -34,7 +57,11 @@ const UploadDropzone = () => {
 
           const progressInterval = startSimulatedProgress(); // Simulate upload progress
 
-          // todo: handle file upload
+          const res = await startUpload(acceptedFiles);
+
+          if (!res) {
+            toast.error("Failed to upload the file.");
+          }
 
           clearInterval(progressInterval);
 
@@ -83,9 +110,14 @@ const UploadDropzone = () => {
                         ></progress>
                       </div>
                     </>
-                  ) : (
-                    <></>
-                  )}
+                  ) : null}
+
+                  <input
+                    {...getInputProps()}
+                    type="file"
+                    id="dropzone-file"
+                    className="hidden"
+                  />
                 </div>
               </div>
             </div>

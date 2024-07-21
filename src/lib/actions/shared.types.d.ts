@@ -22,7 +22,13 @@ export interface GetUserFilesParams {
   pageSize?: number;
 }
 
+export interface GetFileParams {
+  key: string;
+  clerkId: string | null | undefined;
+}
+
 export interface DeleteFileParams {
   fileId: string;
   path: string;
+  clerkId: string | null | undefined;
 }
