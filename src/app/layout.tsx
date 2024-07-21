@@ -33,7 +33,7 @@ export default function RootLayout({
         <body className={`${inter.className} ${open.variable}`}>
           <Navbar />
           {children}
-          <Toaster />
+          <Toaster richColors theme="dark" />
         </body>
       </html>
     </ClerkProvider>

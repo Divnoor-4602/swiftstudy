@@ -24,7 +24,7 @@ export const ourFileRouter = {
         url: `https://utfs.io/f/${file.key}`,
       });
 
-      console.log("createdFile", createdFile);
+      return createdFile;
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
     }),

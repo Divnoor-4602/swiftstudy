@@ -1,34 +1,45 @@
 "use client";
 
-import { File, Cloud, FileUp } from "lucide-react";
+import { File, Cloud, FileUp, Loader2 } from "lucide-react";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
 import { useUploadThing } from "@/lib/uploadthing";
 import { toast } from "sonner";
 import { useAuth } from "@clerk/nextjs";
-import { revalidatePath } from "next/cache";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const UploadDropzone = () => {
-  const path = usePathname();
+  const router = useRouter();
 
-  console.log(path);
-
-  const [isUploading, setIsUploading] = useState<boolean>(true);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
 
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   const { startUpload } = useUploadThing("fileUploader", {
     onUploadBegin: () => {
-      toast("Uploading file...");
+      toast.info("Uploading file...", {
+        description: "Please wait while we upload the file.",
+      });
     },
     onUploadError: () => {
-      toast.error("Failed to upload the file.");
+      toast.error("Failed to upload the file 😰", {
+        description: "Please try again later.",
+      });
     },
-    onClientUploadComplete: (res) => {
-      toast.success("File uploaded successfully.");
+    onClientUploadComplete: async (res) => {
+      toast.success("File uploaded successfully 🎉", {
+        description: "Redirecting to your file...",
+      });
+
+      const [fileResponse] = res;
+
+      const { serverData: file } = fileResponse;
+
       setIsUploading(false);
-      revalidatePath(path);
+
+      setUploadProgress(100);
+
+      router.push(`/file/${file._id}`);
     },
   });
 
@@ -54,18 +65,9 @@ const UploadDropzone = () => {
         multiple={false}
         onDrop={async (acceptedFiles) => {
           setIsUploading(true);
-
           const progressInterval = startSimulatedProgress(); // Simulate upload progress
-
-          const res = await startUpload(acceptedFiles);
-
-          if (!res) {
-            toast.error("Failed to upload the file.");
-          }
-
+          await startUpload(acceptedFiles);
           clearInterval(progressInterval);
-
-          setUploadProgress(100);
         }}
       >
         {({ getRootProps, getInputProps, acceptedFiles }) => {
@@ -140,7 +142,7 @@ const UploadButton = () => {
         }
       >
         Upload files
-        <FileUp className="size-6 group-hover:animate-pulse" />
+        <FileUp className="size-6 group-hover:-translate-y-1 transition duration-200" />
       </button>
       <dialog id="upload_modal" className="modal">
         <div className="modal-box">

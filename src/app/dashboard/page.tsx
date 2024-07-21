@@ -14,10 +14,10 @@ const Page = async () => {
 
   return (
     <>
-      <MaxWidthWrapper className="mt-12">
+      <MaxWidthWrapper className="mt-12 md:px-10">
         <div className="flex-col-reverse sm:flex-row gap-6 flex justify-between items-center">
           <h1 className="text-5xl tracking-tighter font-open font-bold">
-            Your cards
+            Your files
           </h1>
           <UploadButton />
         </div>
@@ -26,7 +26,7 @@ const Page = async () => {
 
       {files && files.length > 0 ? (
         <>
-          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 sm:px-20 mt-12">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 sm:px-10 mt-16 gap-6">
             {files.sort().map((card: any) => {
               return (
                 <li key={card._id}>

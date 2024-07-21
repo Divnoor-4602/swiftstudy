@@ -94,7 +94,6 @@ export async function deleteFileById(params: DeleteFileParams) {
     revalidatePath(path);
 
     // todo: delete all the associated flashcards
-    // todo delete file from upload thing storage
   } catch (error) {
     console.log(error);
     throw error;

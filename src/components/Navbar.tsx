@@ -5,6 +5,7 @@ import logo from "../../public/assets/swiftstudy-logo.svg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Menu } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import {
   SignedIn,
   SignedOut,
@@ -15,6 +16,10 @@ import {
 } from "@clerk/nextjs";
 
 const Navbar = () => {
+  const path = usePathname();
+
+  const router = useRouter();
+
   return (
     <>
       <div className="drawer">
@@ -39,9 +44,13 @@ const Navbar = () => {
                   <button
                     className="btn btn-ghost"
                     onClick={() => {
-                      const element =
-                        document.querySelector("#pricing-section");
-                      element?.scrollIntoView({ behavior: "smooth" });
+                      if (path === "/") {
+                        const element =
+                          document.querySelector("#pricing-section");
+                        element?.scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        router.push("/#pricing-section");
+                      }
                     }}
                   >
                     Pricing
@@ -65,7 +74,12 @@ const Navbar = () => {
                     </Link>
                   </SignedOut>
                   <SignedIn>
-                    <Link href="/dashboard" className="btn btn-ghost">
+                    <Link
+                      href="/dashboard"
+                      className={`btn btn-ghost ${
+                        path === "/dashboard" && "btn-active"
+                      }`}
+                    >
                       Dashboard
                     </Link>
                   </SignedIn>
