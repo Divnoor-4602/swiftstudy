@@ -8,6 +8,7 @@ export interface IUser extends Document {
   password?: string;
   picture?: string;
   files?: Schema.Types.ObjectId[];
+  flashcards?: Schema.Types.ObjectId[];
 }
 
 const userSchema = new Schema(
@@ -19,6 +20,7 @@ const userSchema = new Schema(
     password: { type: String, required: false },
     picture: { type: String, required: false },
     files: [{ type: Schema.Types.ObjectId, ref: "File" }],
+    flashcards: [{ type: Schema.Types.ObjectId, ref: "Flashcard" }],
   },
   { timestamps: true }
 );

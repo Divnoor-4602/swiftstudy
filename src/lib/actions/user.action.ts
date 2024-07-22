@@ -9,6 +9,7 @@ import {
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import File from "@/database/file.model";
+import Flashcard from "@/database/flashcard.model";
 
 export async function createUser(params: CreateUserParams) {
   try {
@@ -65,7 +66,13 @@ export async function deleteUser(params: { clerkId: string }) {
 
     const { clerkId } = params;
 
-    await User.findOneAndDelete({ clerkId });
+    const user = await User.findOneAndDelete({ clerkId }, { new: true });
+
+    // delete the related flashcards and files
+
+    await File.findOneAndDelete({ user: user._id });
+
+    await Flashcard.findOneAndDelete({ user: user._id });
   } catch (error) {
     console.log(error);
     throw error;

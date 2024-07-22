@@ -1,5 +1,7 @@
-// todo: Find and save studies that promote spaced repetition and flashcards based methods
+// todo: Add loading states for the ui
 
-// todo: Engineer a prompt to make the best flashcards possible
+// todo: describe model for flashcards
 
-// todo: Add page not found, error page as well as loading pages
+// todo: server actions for card model
+
+// todo: Make ui for the flashcards
