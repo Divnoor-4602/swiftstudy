@@ -28,7 +28,7 @@ const UploadDropzone = () => {
     },
     onClientUploadComplete: async (res) => {
       toast.success("File uploaded successfully 🎉", {
-        description: "Redirecting to your file...",
+        description: "Redirecting to your flashcards...",
       });
 
       const [fileResponse] = res;

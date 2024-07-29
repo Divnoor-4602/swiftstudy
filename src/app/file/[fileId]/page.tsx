@@ -1,8 +1,20 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-
-import React from "react";
+import { demoFlashcards } from "@/constants";
+import TypeFlashcard from "@/components/cards/TypeFlashcard";
 
 const Page = () => {
+  const needRevising = demoFlashcards.filter((flashcard) => {
+    return flashcard.status === "Needs revising";
+  });
+
+  const goodForNow = demoFlashcards.filter((flashcard) => {
+    return flashcard.status === "Revise soon";
+  });
+
+  const mastered = demoFlashcards.filter((flashcard) => {
+    return flashcard.status === "Mastered";
+  });
+
   return (
     <>
       <MaxWidthWrapper className="mt-12 md:px-10">
@@ -16,8 +28,10 @@ const Page = () => {
         </div>
         <div className="border-b border-secondary mt-4" />
       </MaxWidthWrapper>
-      {/* Document title */}
-      <div></div>
+
+      <div className="sm:px-10 px-6 my-16 flex gap-6">
+        <TypeFlashcard cards={needRevising} type="Needs revising" />
+      </div>
     </>
   );
 };

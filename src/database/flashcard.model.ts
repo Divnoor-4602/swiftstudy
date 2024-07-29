@@ -6,6 +6,7 @@ export interface IFlashcard extends Document {
   question: String;
   answer: String;
   lastStudied: Date;
+  status: string;
 }
 
 const flashcardSchema = new Schema(
@@ -14,12 +15,13 @@ const flashcardSchema = new Schema(
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     question: { type: String, required: true },
     answer: { type: String, required: true },
+    status: { type: String, default: "Needs revising" },
     lastStudied: { type: Date },
   },
   { timestamps: true }
 );
 
 const Flashcard =
-  models.Flashcard || model<IFlashcard>("FlashCard", flashcardSchema);
+  models.FlashCard || model<IFlashcard>("FlashCard", flashcardSchema);
 
 export default Flashcard;
