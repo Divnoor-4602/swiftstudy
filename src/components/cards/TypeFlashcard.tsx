@@ -8,12 +8,20 @@ const TypeFlashcard = ({ type, cards }: TypeFlashcardProps) => {
     <>
       <div className="flex flex-col w-full gap-8">
         <div>
-          <h2 className="text-3xl text-error font-bold tracking-tighter font-open">
+          <h2
+            className={`text-3xl ${
+              type === "Needs revising"
+                ? "text-error"
+                : type === "Revise soon"
+                ? "text-warning"
+                : "text-success"
+            } font-bold tracking-tighter font-open`}
+          >
             {type === "Needs revising"
               ? "Needs Studying 📚"
               : type === "Revise soon"
-              ? "Revise soon"
-              : "Mastered"}
+              ? "Revise soon 😌"
+              : "Mastered 🎓"}
           </h2>
           <span className="font-semibold text-sm text-primary/70">
             {" "}
